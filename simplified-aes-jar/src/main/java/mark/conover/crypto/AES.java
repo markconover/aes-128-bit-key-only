@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
+// Readme at https://github.com/rishidewan33/Advanced-Encryption-Standard-Algorithm
 // From https://raw.githubusercontent.com/rishidewan33/Advanced-Encryption-Standard-Algorithm/master/src/AES.java:
 /**
  * @author Patrick Lu
@@ -83,6 +83,16 @@ public class AES {
      */
     public static void main(String args[]) throws IOException 
     {
+    	// Temporarily set the input arguments to simply run this main method
+    	// with Eclipse
+    	args = new String[7];
+    	args[0] = "e";
+    	args[1] = "-mode";
+    	args[2] = "ecb";
+    	args[3] = "/Users/Mark-Desktop/git/simplified-aes/simplified-aes-jar/src/main/resources/keyfile.txt";
+    	args[4] = "/Users/Mark-Desktop/git/simplified-aes/simplified-aes-jar/src/main/resources/inputfile.txt";
+    	args[5] = "-length";
+    	args[6] = "128";
         /*
          * args[0] should be either "e" or "d"
          * args[1] and args[2] should correspond to the following:

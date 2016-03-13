@@ -12,6 +12,19 @@ public class SimplifiedAES {
         System.out.println("The ciphertext is: " + ciphertext);
     }
     
+    private static final String generateStringFromIntArray(int[] tempArray) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        for (int i = 0; i < tempArray.length; i++) {
+            sb.append(String.valueOf(tempArray[i]));
+            if (i != tempArray.length - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+    
     /**
      * Performs a SAES encryption on a single plaintext block.
      * @param plaintext  plain text as bit array.
@@ -20,22 +33,25 @@ public class SimplifiedAES {
      */
     public static String SAES_Encrypt(int[] plaintext, int[] key) {
         
-        # get the key schedule
-        (K0, K1, K2) = SAES_KeyExpansion(K);
+        // get the key schedule
         
-        state_matrix0 = SAES_ToStateMatrix(plaintext);
-        state_matrix1 = SAES_AddRoundKey(state_matrix0, K0);
-        state_matrix2 = SAES_NibbleSubstitution (state_matrix1);
-        state_matrix3 = SAES_ShiftRow(state_matrix2);
-        state_matrix4 = SAES_MixColumns(state_matrix3);
-        state_matrix5 = SAES_AddRoundKey(state_matrix4, K1);
-        state_matrix6 = SAES_NibbleSubstitution (state_matrix5);
-        state_matrix7 = SAES_ShiftRow(state_matrix6);
-        state_matrix8 = SAES_AddRoundKey(state_matrix7, K2);
-        
-        output = SAES_FromStateMatrix(state_matrix8);
-        
-        return output;
+//        (K0, K1, K2) = 
+        SAES_KeyExpansion(generateStringFromIntArray(key));
+//        
+//        state_matrix0 = SAES_ToStateMatrix(plaintext);
+//        state_matrix1 = SAES_AddRoundKey(state_matrix0, K0);
+//        state_matrix2 = SAES_NibbleSubstitution (state_matrix1);
+//        state_matrix3 = SAES_ShiftRow(state_matrix2);
+//        state_matrix4 = SAES_MixColumns(state_matrix3);
+//        state_matrix5 = SAES_AddRoundKey(state_matrix4, K1);
+//        state_matrix6 = SAES_NibbleSubstitution (state_matrix5);
+//        state_matrix7 = SAES_ShiftRow(state_matrix6);
+//        state_matrix8 = SAES_AddRoundKey(state_matrix7, K2);
+//        
+//        output = SAES_FromStateMatrix(state_matrix8);
+//        
+//        return output;
+        return null;
     }
     
     /**
@@ -44,7 +60,7 @@ public class SimplifiedAES {
      * @param key the key in which key expansion will be computed upon.
      * @return the fully computed expanded key for the AES encryption/decryption.
      */
-    public static int[][] keySchedule(String key)
+    public static int[][] SAES_KeyExpansion(String key)
     {
 
         int binkeysize = key.length() * 4;
@@ -90,29 +106,6 @@ public class SimplifiedAES {
             }
         }
         return keyMatrix;
-    }
-    
-    /**
-     * Expands a SAES key into two round keys.
-     * @param key
-     * @return
-     */
-    public static int[] SAES_KeyExpansion(int[] key) {
-        
-        w0 = VF8([K[j] for j in xrange(8)]);
-                w1 = VF8([K[j] for j in xrange(8,16)]);
-                w2 = w0 + SAES_g(w1, 0); w3 = w1 + w2;
-                w4 = w2 + SAES_g(w3, 1); w5 = w3 + w4;
-
-                K0 = [w0[j] for j in xrange(8)];
-                K0.extend([w1[j] for j in xrange(8)]);
-
-                K1 = [w2[j] for j in xrange(8)];
-                K1.extend([w3[j] for j in xrange(8)]);
-                
-                K2 = [w4[j] for j in xrange(8)];
-                K2.extend([w4[j] for j in xrange(8)]);
-                return (K0, K1, K2);
     }
 
     // #

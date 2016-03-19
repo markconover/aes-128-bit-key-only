@@ -259,8 +259,6 @@ public class AES128 {
 
 		System.out.println("Plain Text : " + plainText);
 		System.out.println("Encrypted Text : " + encryptedText);
-		System.out.println("Encrypted Text should be: "
-				+ generateStringFromIntArray(ciphertextShouldBe));
 		System.out.println("Decrypted Text : " + decryptedText);
 	}
 }
